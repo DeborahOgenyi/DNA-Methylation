@@ -1,0 +1,203 @@
+LISTS OF COMMANDS USED:
+ORIGINAL FILES:
+ SRR3824222_1_sub.fastq
+ SRR3824222_2_sub.fastq 
+ SRR5836473_1_sub.fastq
+ SRR5836473_2_sub.fastq 
+ SRR5836474_1_sub.fastq
+ SRR5836474_2_sub.fastq 
+ SRR5836475_1_sub.fastq
+ SRR5836475_2_sub.fastq
+ 
+FASTQC OF ORIGINAL FILES: 
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR3824222_1_sub.fastq
+
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR3824222_2_sub.fastq
+
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR5836473_1_sub.fastq
+
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR5836473_2_sub.fastq
+
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR5836474_1_sub.fastq
+
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR5836474_2_sub.fastq
+
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR5836475_1_sub.fastq
+
+~/soft/FastQC/fastqc -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/ ~/OMICS/RawData/hw2/SRR5836475_2_sub.fastq
+
+TRIMMING:
+screen -S DeborahOganyaOgenyi ~/soft/TrimGalore-0.6.6/trim_galore -q 45 --three_prime_clip_R1 1 --three_prime_clip_R2 1 -o ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed --paired ~/OMICS/RawData/hw2/SRR3824222_1_sub.fastq ~/OMICS/RawData/hw2/SRR3824222_2_sub.fastq
+
+screen -S DeborahOganyaOgenyi ~/soft/TrimGalore-0.6.6/trim_galore -q 45 --three_prime_clip_R1 1 --three_prime_clip_R2 1 -o ~/DEborahOganyaOgenyi/OMICS2/FastQC/trimmed --paired ~/OMICS/RawData/hw2/SRR5836473_1_sub.fastq ~/OMICS/RawData/hw2/SRR5836473_2_sub.fastq
+
+screen -S DeborahOganyaOgenyi ~/soft/TrimGalore-0.6.6/trim_galore -q 45 --three_prime_clip_R1 1 --three_prime_clip_R2 1 -o ~/DEborahOganyaOgenyi/OMICS2/FastQC/trimmed --paired ~/OMICS/RawData/hw2/SRR5836474_1_sub.fastq ~/OMICS/RawData/hw2/SRR5836474_2_sub.fastq 
+
+screen -S DeborahOganyaOgenyi ~/soft/TrimGalore-0.6.6/trim_galore -q 45 --three_prime_clip_R1 1 --three_prime_clip_R2 1 -o ~/DEborahOganyaOgenyi/OMICS2/FastQC/trimmed --paired ~/OMICS/RawData/hw2/SRR5836475_1_sub.fastq ~/OMICS/RawData/hw2/SRR5836475_2_sub.fastq
+
+BISMARK:
+screen -S DeborahOganyaOgenyiBis ~/soft/Bismark-0.23.1/bismark -p 4 ~/DeborahOganyaOgenyi/OMICS2 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark -1 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR3824222_1_sub_val_1.fq -2 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR3824222_2_sub_val_2.fq
+
+screen -S DeborahOganyaOgenyiBis ~/soft/Bismark-0.23.1/bismark -p 4 ~/DeborahOganyaOgenyi/OMICS2 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark -1 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR5836473_1_sub_val_1.fq -2 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR5836473_2_sub_val_2.fq
+
+screen -S DeborahOganyaOgenyiBis ~/soft/Bismark-0.23.1/bismark -p 4 ~/DeborahOganyaOgenyi/OMICS2 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark -1 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR5836474_1_sub_val_1.fq -2 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR5836474_2_sub_val_2.fq
+
+screen -S DeborahOganyaOgenyiBis ~/soft/Bismark-0.23.1/bismark -p 4 ~/DeborahOganyaOgenyi/OMICS2 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark -1 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR5836475_1_sub_val_1.fq -2 ~/DeborahOganyaOgenyi/OMICS2/FastQC/trimmed/SRR5836475_2_sub_val_2.fq
+
+DEDUPLICATION:
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.bam
+
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.bam
+
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.bam
+
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.bam
+
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.bam
+
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.bam
+
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.bam
+
+screen -S DeborahOganyaOgenyi_ded ~/soft/Bismark-0.23.1/deduplicate_bismark --output_dir ~/DeborahOganyaOgenyi/OMICS2/Bismark -p ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.bam
+
+METHYLATION PROFILE:
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+screen -S DeborahOganyaOgenyi_met ~/soft/Bismark-0.23.1/bismark_methylation_extractor -p --gzip -o ~/DeborahOganyaOgenyi/OMICS2/Bismark --bedGraph ~/DeborahOganyaOgenyi/OMICS2/Bismark SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.bam
+
+
+BISMARK REPORT AND SUMMARY:  
+~/soft/Bismark-0.23.1/bismark2report
+~/soft/Bismark-0.23.1/bismark2summary
+
+MAPPED READS:
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.bam
+
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.bam
+
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.bam
+
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.bam
+
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.bam
+
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.bam
+
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.bam
+
+~/soft/methpipe-4.1.1/build/./to-mr -v -m bismark -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.bam
+
+SORT MR FILES: 
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.mr
+
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.mr
+
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.mr
+
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.mr
+
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.mr
+
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.mr
+
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.mr
+
+sort -k 1,1 -k 2,2n -k 3,3n -k 6,6 -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.mr ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.mr
+
+METHCOUNTS: 
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+methcounts -cpg-only -c ~/DeborahOganyaOgenyi/OMICS2/chr13.fa -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.mr
+
+MERGING SYMETRIC CPG:
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+symmetric-cpgs -v -o ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.symmetric.all_CpGs.meth ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.all_CpGs.meth
+
+BIGWIG:
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR3824222_1_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR3824222_2_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836473_1_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836473_2_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836474_1_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836474_2_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836475_1_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836475_2_sub_val_1_bismark_bt2_pe.deduplicated.bigWig
+
+GENOME COVERAGE:
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+/genomeCoverageBed -bg -ibam ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.bam > ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph
+
+COVERAGE.BIGWIG:
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR3824222_1_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR3824222_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR3824222_2_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836473_1_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836473_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836473_2_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836474_1_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836474_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836474_2_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_1_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836475_1_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
+
+~/soft/bedGraphToBigWig ~/DeborahOganyaOgenyi/OMICS2/Bismark/SRR5836475_2_sub_val_1_bismark_bt2_pe.bam.coverage.bedGraph ~/DeborahOganyaOgenyi/mm10.chromSizes ~/DeborahOganyaOgenyi/OMICS2/Bismark/bigwig/SRR5836475_2_sub_val_1_bismark_bt2_pe.bam.coverage.bigWig
